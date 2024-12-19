@@ -2,17 +2,17 @@ import { defineConfig } from 'vite';
 import { resolve } from 'path';
 
 export default defineConfig({
-    root: 'src', // Set 'src' as the root folder
+    root: 'src',
     build: {
-        outDir: '../dist', // Output files to a 'dist' folder
+        outDir: '../dist',
         rollupOptions: {
-            input: 'src/index.html', // Entry point
+            input: 'src/index.html',
         },
     },
-    base: './', // Use relative paths
+    base: 'aboutme',
     resolve: {
         alias: {
-            '@': resolve(__dirname, 'src'), // Alias for cleaner imports
+            '@': resolve(__dirname, 'src'),
         },
     },
 });
