@@ -10,7 +10,7 @@ export default defineConfig({
         },
     },
     publicDir: '../public',
-    base: './',
+    base: '/aboutme/',
     resolve: {
         alias: {
             '@': resolve(__dirname, 'src'),
