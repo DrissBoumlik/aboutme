@@ -1,4 +1,4 @@
-import particlesJson from '@/plugins/particles/particles.json';
+import particlesJson from '@/plugins/particles/particles.min.json';
 
 function initParticlesJS() {
     try {
