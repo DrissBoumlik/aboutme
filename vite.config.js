@@ -9,7 +9,7 @@ export default defineConfig({
             input: 'src/index.html',
         },
     },
-    publicDir: '../public',
+    publicDir: 'public',
     base: '/aboutme/',
     resolve: {
         alias: {
