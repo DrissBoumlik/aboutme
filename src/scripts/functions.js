@@ -1,23 +1,31 @@
-import particlesJson from '@/plugins/particles/particles.min.json';
+import particlesJson from '@/plugins/particles/particles.json';
 
 function initParticlesJS() {
-    if (document.querySelector('#particles-js')) {
-        particlesJS('particles-js', particlesJson);
+    try {
+        if (document.querySelector('#particles-js')) {
+            window.particlesJS('particles-js', particlesJson);
+        }
+    } catch (error) {
+        console.error(error);
     }
 }
 
 function initDarkMode(selector) {
     document.querySelector(selector)
         .addEventListener('click', function (event) {
-            const _this = event.target;
-            _this.classList.add('pushed');
-            setTimeout(() => _this.classList.remove('pushed'), 300);
+            try {
+                const _this = event.target.closest(selector);
+                _this.classList.add('pushed');
+                setTimeout(() => _this.classList.remove('pushed'), 300);
 
-            toggleDarkMode(
-                document.body,
-                { darkmode: 'dark-mode', lightmode: 'light-mode' },
-                { name: 'mode', darkmodeValue: 'dark', lightmodeValue: 'light' }
-            );
+                toggleDarkMode(
+                    document.body,
+                    { darkmode: 'dark-mode', lightmode: 'light-mode' },
+                    { name: 'mode', darkmodeValue: 'dark', lightmodeValue: 'light' }
+                );
+            } catch (error) {
+                console.log(error);
+            }
     });
 }
 
@@ -34,7 +42,7 @@ function toggleDarkMode(element, classes, cookieData) {
 }
 
 function getMyAge() {
-    return ((new Date()).getFullYear() - 1989); 
+    return ((new Date()).getFullYear() - 1989);
 }
 
 export { initParticlesJS, initDarkMode, getMyAge };
