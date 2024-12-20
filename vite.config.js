@@ -1,4 +1,5 @@
 import { defineConfig } from 'vite';
+import { viteStaticCopy } from 'vite-plugin-static-copy';
 import { resolve } from 'path';
 import { ViteEjsPlugin } from 'vite-plugin-ejs';
 
@@ -18,5 +19,11 @@ export default defineConfig({
     },
     plugins: [
         ViteEjsPlugin(),
+        viteStaticCopy({
+            targets: [
+                { src: 'assets/img/me/*.*', dest: '../dist/assets/img/me/' },
+                { src: 'assets/img/other/*.*', dest: '../dist/assets/img/other/' }
+            ]
+        })
     ]
 });
