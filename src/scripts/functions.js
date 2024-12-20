@@ -14,11 +14,10 @@ function initParticlesJS() {
 function animatedWelcome() {
     try {
         const textElement = document.querySelector("#greeting");
-        const textContent = textElement.textContent;
+        const textContent = "Hi visitor of this page 👋";
         textElement.textContent = "";
         const words = textContent.split(" ");
-        const _words = [];
-        const _chars = [];
+        const textSplitted = { words: [], chars: [] };
         words.forEach((word, index) => {
             const divWord = document.createElement("div");
             divWord.className = "word d-inline-block";
@@ -31,7 +30,7 @@ function animatedWelcome() {
                 divChar.textContent = word;
                 divChar.className = "char d-inline-block";
                 divWord.appendChild(divChar);
-                _chars.push(divChar);
+                textSplitted.chars.push(divChar);
             }
             else {
                 word.split("").forEach((char) => {
@@ -39,13 +38,12 @@ function animatedWelcome() {
                     divChar.textContent = char;
                     divChar.className = "char d-inline-block";
                     divWord.appendChild(divChar);
-                    _chars.push(divChar);
+                    textSplitted.chars.push(divChar);
                 });
             }
-            _words.push(divWord);
+            textSplitted.words.push(divWord);
         });
-        console.log(_words, _chars);
-        gsap.fromTo(_chars, {
+        gsap.fromTo(textSplitted.chars, {
             scale: 2.5,
             opacity: 0
         }, {
