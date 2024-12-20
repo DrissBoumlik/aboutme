@@ -22,7 +22,8 @@ export default defineConfig({
         viteStaticCopy({
             targets: [
                 { src: 'assets/img/me/*.*', dest: '../dist/assets/img/me/' },
-                { src: 'assets/img/other/*.*', dest: '../dist/assets/img/other/' }
+                { src: 'assets/img/other/*.*', dest: '../dist/assets/img/other/' },
+                { src: 'assets/plugins/particles/*.*', dest: '../dist/assets/plugins/particles/' }
             ]
         })
     ]
