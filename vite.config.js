@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import { resolve } from 'path';
+import { ViteEjsPlugin } from 'vite-plugin-ejs';
 
 export default defineConfig({
     root: 'src',
@@ -15,4 +16,7 @@ export default defineConfig({
             '@': resolve(__dirname, 'src'),
         },
     },
+    plugins: [
+        ViteEjsPlugin(),
+    ]
 });
