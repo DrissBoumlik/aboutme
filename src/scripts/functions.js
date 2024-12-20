@@ -1,4 +1,5 @@
 import particlesJson from '@/plugins/particles/particles.min.json';
+import gsap from "gsap";
 
 function initParticlesJS() {
     try {
@@ -8,6 +9,60 @@ function initParticlesJS() {
     } catch (error) {
         console.error(error);
     }
+}
+
+function animatedWelcome() {
+    try {
+        const textElement = document.querySelector("#greeting");
+        const textContent = textElement.textContent;
+        textElement.textContent = "";
+        const words = textContent.split(" ");
+        const _words = [];
+        const _chars = [];
+        words.forEach((word, index) => {
+            const divWord = document.createElement("div");
+            divWord.className = "word d-inline-block";
+            if (index > 0) {
+                divWord.className += " ms-2"
+            }
+            textElement.appendChild(divWord);
+            if (isEmoji(word)) {
+                const divChar = document.createElement("div");
+                divChar.textContent = word;
+                divChar.className = "char d-inline-block";
+                divWord.appendChild(divChar);
+                _chars.push(divChar);
+            }
+            else {
+                word.split("").forEach((char) => {
+                    const divChar = document.createElement("div");
+                    divChar.textContent = char;
+                    divChar.className = "char d-inline-block";
+                    divWord.appendChild(divChar);
+                    _chars.push(divChar);
+                });
+            }
+            _words.push(divWord);
+        });
+        console.log(_words, _chars);
+        gsap.fromTo(_chars, {
+            scale: 2.5,
+            opacity: 0
+        }, {
+            scale: 1,
+            opacity: 1,
+            stagger: .05,
+            duration: 1.3,
+            ease: "power4.out"
+        });
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+function isEmoji(char) {
+    const emojiRegex = /[\p{Emoji}]/gu; // Unicode range for emojis
+    return emojiRegex.test(char);
 }
 
 function initDarkMode(selector) {
@@ -45,4 +100,4 @@ function getMyAge() {
     return ((new Date()).getFullYear() - 1989);
 }
 
-export { initParticlesJS, initDarkMode, getMyAge };
+export { initParticlesJS, initDarkMode, getMyAge, animatedWelcome };
