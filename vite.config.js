@@ -18,6 +18,17 @@ export default defineConfig({
         },
     },
     plugins: [
+        {
+            name: 'ejs-reloader',
+            handleHotUpdate({ file, server }) {
+                if (file.endsWith('.ejs')) {
+                    server.ws.send({
+                        type: 'full-reload',
+                        path: '*',
+                    })
+                }
+            },
+        },
         ViteEjsPlugin(),
         viteStaticCopy({
             targets: [
